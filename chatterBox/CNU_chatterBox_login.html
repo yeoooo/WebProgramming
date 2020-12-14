@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 화면</title>
+
+
+        
+    <style>
+    .body{
+        background-color: #fff345; 
+    }
+    .login {
+        position: absolute;
+        left: 50%;
+        top: 50%; 
+        transform: translate(-50%, -50%);
+        text-align: center; 
+        width : 300px;
+        height : 500px;
+        box-shadow: 0px 0px 5px gray;
+        text-indent: 10px;
+        border-radius: 10px;
+        background-color: #FFFFFF
+        }
+    #title{
+        font-weight: bold;
+        font-size: 70px;
+        
+        }
+    
+    input.underline{
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top-width: 0;
+        border-bottom-width: 1;
+        border-color: darkturquoise;
+    }
+    #btn_login{
+        background-color: transparent;
+        border : none transparent solid;
+        
+    }
+        </style>
+        <script>
+            var nickname;
+            function move(){
+            nickname = document.getElementById("tx_id").value;
+                
+                
+                location.href = "CNU_chatterBox_main.html?nick=" + nickname;
+                
+
+            }
+
+            
+        </script>
+    
+
+</style>
+</head>
+<body bgcolor="#F5FFFA">
+    
+    <div class="login">
+        <div id = title >CNU Chatter Box</Strong>
+        <input class = underline type="text" value="" id = "tx_id" placeholder="Enter Nick"><br>
+        <input class = underline type = "submit" value = "Login" id = "btn_login" onclick="move()">
+        
+    </div>
+    </body>
+    </html>

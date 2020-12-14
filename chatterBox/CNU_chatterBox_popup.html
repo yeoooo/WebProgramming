@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 등록</title>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <style>
+        
+    
+    textarea{
+        resize : none;
+        
+        width : 99%;
+        margin-right: 10px;
+        height: 200px;
+        background-color: #F5FFFA;
+    }
+    .add_photo{
+        margin-top: 7px;
+        margin-left : 3px;
+        width : 60px;
+        height : 60px;
+        box-shadow: 0px 0px 5px gray;
+        text-indent: 10px;
+        border-radius: 10px;
+        background-image: url(resource/add_photo.png);
+        background-size: 60px;
+        background-repeat: no-repeat;
+        float: left;
+      }
+
+     #file{display: none;} 
+     
+    
+     input.underline{
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top-width: 0;
+        border-bottom-width: 1;
+        border-color: darkturquoise;
+    }
+    #submit_btn{
+        background-color: transparent;
+        border : none transparent solid;
+        float: right;
+        margin-top: 45px;
+        
+    }
+
+
+   
+    </style>
+    <a href = "javascript.close();"></a>
+    <script>
+        function WInClose(){
+            window.open('','_self').close();
+        }
+
+        function setThumbnail(event){//썸네일을 만드는 함수
+            
+            var input = document.getElementById("image");//인풋 파일 객체
+
+            var reader = new FileReader();//파일리더로 파일을 읽어옴
+            reader.readAsDataURL(input.files[0]);
+            reader.onloadend = function(event){
+                var img = document.getElementById("photo_add");
+                // img.src = event.target.result;
+                img.style.backgroundImage = 'url(' + event.target.result+ ')';
+                opener.img_cont = event.target.result;
+
+                img.style.backgroundSize = "cover";
+                
+            }
+            // reader.readAsDataURL(event.target.files[0]);
+            // console.log(event.target.result);
+            // reader.onload = function  () {//로컬 이미지를 보여주기
+            // document.querySelector('#preview').src = reader.result;
+            // var preivew = document.getElementById("photo_add");
+            // // preivew.style.backgroundImage = 'url('+event.target.result+')';
+            // console.log(document.getEle)
+            
+            
+            }
+        // }
+        
+   
+            
+           
+            
+            
+            
+        
+        function posting(){//변수에 값을 넣어줌
+           
+            var txt_contents = $("textarea#contents").val();
+          
+        //   opener.location.href = 'javascript:post();';
+        // window.opener.posting_cont = txt_contents;
+      
+        opener.posting_cont = txt_contents;
+        window.opener.post();
+             window.self.close();
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        
+
+    </script>
+   
+</head>
+
+<body>
+   
+    
+    <textarea name="contents" id = "contents"></textarea>
+    <input type = "file" id = "image" name = "photo" accept = "image/*" style="display: none;" onchange="setThumbnail(event);"/>
+    
+    
+    <div class="add_photo" onclick="document.all.photo.click();" id = "photo_add">
+       
+    </div>
+    <input class = underline  type = "submit"  value = "Put in" id = "submit_btn" onclick="posting();" >
+</div>
+       
+       
+
+    
+</body>
+</html>

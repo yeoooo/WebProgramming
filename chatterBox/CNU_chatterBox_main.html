@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNU chatterBox</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <style>
+
+      html, body{margin : 0;
+                padding : 0; 
+                height : 100%
+              ;}
+     
+      .header{
+        margin-left: 10px;
+        width : 100%;
+        height : 5%;
+      }
+      .nav{
+        width : 100%;
+        margin-top : 10px;
+        height: 5%;
+        border-bottom: 1px solid black;
+        display: flex;
+        
+        align-items: center;
+        
+      }
+      .nav-item{
+        margin-left:20px;
+        
+        font-weight: bold;
+      }
+      .section{
+        margin-top : 1px;
+        /* border : 1px solid black; */
+        width : 100%; 
+        height : 90%;
+        align-items: center;
+        float : left;
+      }
+      .section_item{
+        margin-top: 10px;
+        margin-left : 15px;
+        width : 200px;
+        height : 200px;
+        
+        box-shadow: 0px 0px 5px gray;
+        text-indent: 10px;
+        border-radius: 10px;
+        float : left;
+        word-break: break-all;
+        background-size: cover;
+        /* background-image: url("pupp(2).jpg"); */
+        
+        
+      }
+      .section_writer{
+        padding : 12px 0 0 0;
+      }
+      .section_contents{
+        
+        padding : 12px 0 0 0;
+        
+
+      }
+      .article{
+        margin-top : 1px;
+        border-left : 1px solid black;
+        width : 9%;
+        height : 90%;
+        float : right;
+      }
+
+
+      #footer{
+       
+        position : absolute;
+        bottom : 0;
+        width: 100%;
+        height : 70px;
+       
+        border : 1px solid black;
+        clear: both;
+
+      }
+      input.underline{
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top-width: 0;
+        border-bottom-width: 1;
+        border-color: darkturquoise;
+        background-color: transparent;
+        margin-top: 70px;
+        margin-left:  150px;
+        position: absolute;
+        }
+       
+
+ul {margin-left: -30px;}
+ul > li {display: inline-flex; width:200px; margin-right: 10px;}
+ul > li > a {width:auto;text-decoration: none; border: 1px  }
+ul > li > a .screen {position:relative;overflow:hidden; ;}
+ul > li > a .screen .top {position:absolute;bottom:150%;left:30px;z-index:2;color:#fff;font-size:26px;font-weight:900;transition:all .35s; margin-right: 10px;}
+ul > li > a .screen .bottom {position:absolute;top:150%;left:30px;z-index:2;color:#fff;font-size:12px;transition:all .35s; margin-right: 30px;}
+ul > li > a .screen img {width:100%;}
+ul > li > a h3 {font-size:14px;text-align:center;padding:20px;color:#666;}
+ul > li > a .screen::after {content:'';display:block;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1;opacity:0;transition:all .35s;}
+ul > li > a:hover .top {bottom:52%;}
+ul > li > a:hover .bottom {top:52%;}
+ul > li > a:hover .screen::after {opacit:1;}
+
+      .section_post{
+        margin-top: 10px;
+        margin-left : 15px;
+        width : 200px;
+        height : 200px;
+        box-shadow: 0px 0px 5px gray;
+        text-indent: 10px;
+        border-radius: 10px;
+        background-image: url(resource/pencil.png);
+        background-size:  67px;
+        background-color: deepskyblue;
+        float: left;
+      
+      }
+     
+      </style>
+
+     
+
+      <script>
+        window.name = "home";
+        temp = location.href.split("?");
+        // data = temp[1].split(":");
+        // txt_contents = data[0];
+
+        function showPopup(){
+          window.open("CNU_chatterBox_popup.html","popup","width=300,height=310,left=100,top=50");//url, name 순
+          ;}
+          function showCont(){
+            window.open("CNU_chatterBox_showContents.html", "contents", "width = 600, height = 1000")
+          }
+  
+       
+
+      </script>
+      
+      
+</head>
+<body bgcolor="#F5FFFA">
+  
+  <div class = "header" >
+    <h2>  &nbspCNU chatterBox</h2>
+    
+  </div>
+  
+  <div class = "nav">
+    
+    <div class = "nav-item">Hot Chat</div>
+    <div class = "nav-item">New Chat</div>
+    <div class = "nav-item">Archieve</div>
+    
+  </div>
+  
+
+
+  <div class = "section" id = "section">
+      <ul id = "list">
+    <div class = "section_post" onclick="showPopup()">
+    
+    </div>
+   
+        
+         </ul>     
+
+        
+  </div> 
+  
+  <!-- <input type="button" onclick="post()">   -->
+
+
+
+
+
+  
+  <!-- <div class = "article">
+    Article
+  </div> -->
+      <!-- <div id = "footer">
+            footer
+        </div> -->
+  
+  <script>
+    var writer_name;
+    var posting_cont;//여기에 게시글 변수를 받음
+    var img_cont;
+  
+       function post(){//포스팅 함수, 팝업과 연계
+          var item = document.createElement('div');
+          var writer =document.createElement('div');
+          var flip = document.createElement("input");
+          var imgParam = document.createElement("img");
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.setAttribute("href", "");  
+
+         writer_name = getParameterByName("nick");//닉네임 변수 받는곳
+         
+          writer.innerHTML = writer_name;
+          
+          var contents = document.createElement('div');
+          
+          contents.innerHTML = posting_cont;
+       
+          item.className = 'section_item screen';
+          
+          item.style.backgroundImage = "url('"+img_cont+"')";//여기에 이미지 변수를 받음
+          
+
+          item.setAttribute(onclick, "showCont();");
+          writer.className = 'section_writer top';
+          contents.className = 'section_contents bottom';
+          
+          item.appendChild(writer);
+          item.appendChild(contents);
+          a.appendChild(item);
+          li.appendChild(a);
+          
+            var ul = document.getElementById('list');
+            ul.appendChild(li);
+         
+        
+          
+
+          
+        
+          // item.appendChild(imgParam);
+          
+          var sec = document.getElementsByClassName("section");
+
+          // item.onclick(showCont());
+        //   sec.appendChild(item);
+
+        function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          }
+        }
+  </script>
+  
+</body>
+</html>
